@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiautos de Nicaragua | Mecánica, enderezado y pintura al horno en Managua</title>
+<meta name="description" content="Taller de reparación de automóviles en Managua: mecánica, enderezado y pintura al horno. Pista de la Resistencia, Rotonda Cristo Rey 60 m abajo. Tel. 2270 2838.">
+<meta name="theme-color" content="#32316D">
+<link rel="icon" type="image/png" href="img/logo-m.png">
+<script>
+  // La animación del logo se muestra una vez por visita (y nunca si el visitante prefiere menos movimiento)
+  try {
+    if (sessionStorage.getItem('intro-vista') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('sin-intro');
+    } else {
+      sessionStorage.setItem('intro-vista', '1');
+    }
+  } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;0,800;1,800;1,900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta tomada del logo de Multiautos */
+    --azul:#32316D;          /* azul del logo */
+    --azul-profundo:#1D1C47; /* fondos oscuros */
+    --azul-noche:#121132;    /* pie de página */
+    --azul-suave:#B9B8E8;    /* detalles sobre fondo oscuro */
+    --rojo:#CB0016;          /* rojo del auto del logo */
+    --rojo-oscuro:#A00012;
+    --plata:#EEF0F5;         /* fondos claros */
+    --texto:#191936;
+    --texto-suave:#4B4C66;
+    --texto-claro:#DADAF0;
+    --estrella:#F5B301;
+    --display:'Exo 2','Arial Narrow',sans-serif;
+    --cuerpo:'Montserrat','Segoe UI',Helvetica,sans-serif;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth}
+  section[id]{scroll-margin-top:84px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;font-family:var(--cuerpo);color:var(--texto);background:#fff;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  img,iframe{max-width:100%}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--estrella);outline-offset:3px;border-radius:6px}
+  .contenedor{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+  .titulo{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:1;letter-spacing:.2px;margin:0;color:var(--azul)}
+  .oscuro .titulo{color:#fff}
+  .etiqueta{display:inline-flex;align-items:center;gap:10px;margin:0 0 14px;font-weight:700;font-size:14px;color:var(--rojo)}
+  .etiqueta::before{content:"";width:28px;height:4px;background:var(--rojo);transform:skewX(-30deg)}
+  .oscuro .etiqueta{color:var(--azul-suave)}
+  .oscuro .etiqueta::before{background:var(--rojo)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-family:var(--cuerpo);font-weight:700;font-size:16px;padding:15px 26px;border-radius:6px;min-height:48px;border:0;cursor:pointer;transition:background .15s}
+  .btn-rojo{background:var(--rojo);color:#fff}
+  .btn-rojo:hover{background:var(--rojo-oscuro)}
+  .btn-borde{border:1.5px solid rgba(255,255,255,.45);color:#fff;background:transparent}
+  .btn-borde:hover{background:rgba(255,255,255,.08)}
+  .btn-azul{background:var(--azul);color:#fff}
+  .btn-azul:hover{background:var(--azul-profundo)}
+  .btn-claro{border:1.5px solid #C8CAD8;color:var(--azul);background:#fff}
+  .btn-claro:hover{background:var(--plata)}
+
+  /* ===== Animación de entrada del logo (1,5 s) ===== */
+  #intro{position:fixed;inset:0;z-index:100;background:#fff;display:flex;align-items:center;justify-content:center;
+         animation:intro-salida .35s ease-in 1.15s forwards}
+  .sin-intro #intro{display:none}
+  .intro-logo{position:relative;width:min(78vw,560px);aspect-ratio:573/162}
+  .intro-logo img{position:absolute;display:block}
+  .i-m{left:0;top:0;width:31.76%;height:100%;animation:i-m .5s cubic-bezier(.2,.9,.25,1.15) both}
+  .i-palabra{left:31.76%;top:0;width:68.24%;height:79.63%;clip-path:inset(0 100% 0 0);animation:i-palabra .5s cubic-bezier(.6,0,.2,1) .3s forwards}
+  .i-lema{left:31.76%;top:79.63%;width:68.24%;height:20.37%;opacity:0;animation:i-lema .3s ease-out .75s forwards}
+  .i-linea{position:absolute;left:0;top:calc(100% + 18px);height:4px;width:100%;background:var(--rojo);transform-origin:left;transform:scaleX(0) skewX(-30deg);animation:i-linea .7s cubic-bezier(.6,0,.2,1) .2s forwards}
+  @keyframes i-m{from{opacity:0;transform:translateX(-60%) scale(.85)}to{opacity:1;transform:none}}
+  @keyframes i-palabra{to{clip-path:inset(0 0 0 0)}}
+  @keyframes i-lema{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes i-linea{to{transform:scaleX(1) skewX(-30deg)}}
+  @keyframes intro-salida{to{opacity:0;visibility:hidden}}
+
+  /* ===== Encabezado ===== */
+  .encabezado{background:#fff;position:sticky;top:0;z-index:20;box-shadow:0 1px 0 #E3E4EE,0 4px 14px rgba(29,28,71,.07)}
+  .nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-top:10px;padding-bottom:10px}
+  .marca{display:flex;align-items:center;text-decoration:none}
+  .marca img{display:block;height:56px;width:auto}
+  .menu{display:flex;flex-wrap:wrap;align-items:center;gap:4px 26px;font-size:15px}
+  .menu a.enlace{text-decoration:none;color:var(--azul);font-weight:600;padding:10px 0}
+  .menu a.enlace:hover{color:var(--rojo)}
+  .menu .btn{font-size:15px;padding:11px 18px;min-height:44px}
+
+  /* ===== Portada ===== */
+  .portada{position:relative;background:var(--azul-profundo);color:#fff;overflow:hidden}
+  .portada-foto,.portada-franja{position:absolute;top:0;right:0;bottom:0;clip-path:polygon(170px 0,100% 0,100% 100%,0 100%)}
+  .portada-franja{width:calc(56% + 24px);background:var(--rojo)}
+  .portada-foto{width:56%;margin:0}
+  .portada-foto img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .portada-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,28,71,0) 55%,rgba(29,28,71,.55) 100%)}
+  .portada-grid{position:relative;min-height:600px;display:flex;align-items:center;padding-top:72px;padding-bottom:72px}
+  .portada-texto{width:44%;min-width:0}
+  .portada h1{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(46px,6vw,78px);line-height:.95;text-transform:uppercase;letter-spacing:-.5px;margin:0 0 22px}
+  .portada p.intro{margin:0 0 30px;font-size:17px;color:var(--texto-claro);max-width:430px}
+  .acciones{display:flex;flex-wrap:wrap;gap:14px}
+  .resena-chip{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:30px;font-size:14px;color:var(--texto-claro)}
+  .resena-chip strong{font-family:var(--display);font-weight:800;font-size:30px;color:#fff;line-height:1}
+  .estrellas{display:flex;gap:2px;color:var(--estrella)}
+
+  /* ===== Banda ===== */
+  .banda{background:var(--azul);color:#fff}
+  .banda .contenedor{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px;padding-top:20px;padding-bottom:20px}
+  .especialidades{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;margin:0;padding:0;list-style:none}
+  .especialidades li{font-family:var(--display);font-weight:800;font-style:italic;font-size:26px;text-transform:uppercase;display:flex;align-items:center;gap:20px}
+  .especialidades li+li::before{content:"";width:5px;height:24px;background:var(--rojo);transform:skewX(-20deg)}
+  .banda .horario{margin:0;font-size:14px;color:var(--texto-claro)}
+  .banda .horario strong{color:#fff}
+
+  /* ===== Secciones ===== */
+  .seccion{padding:96px 0}
+  .seccion .titulo{font-size:clamp(34px,4.6vw,50px)}
+  .cabecera-seccion{max-width:680px;margin-bottom:44px}
+  .cabecera-seccion p.sub{margin:14px 0 0;color:var(--texto-suave);font-size:16px}
+  .oscuro .cabecera-seccion p.sub{color:var(--texto-claro)}
+  .rejilla{display:flex;flex-wrap:wrap;gap:20px}
+
+  .servicios{background:var(--plata)}
+  .servicio{flex:1 1 250px;background:#fff;border-radius:10px;padding:30px;border-top:4px solid var(--rojo)}
+  .servicio svg{display:block;margin-bottom:16px}
+  .servicio h3{margin:0 0 10px;font-family:var(--display);font-weight:800;font-size:22px;color:var(--azul)}
+  .servicio p{margin:0;color:var(--texto-suave);font-size:15px}
+
+  /* ===== Catálogo ===== */
+  .catalogo-barra{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px}
+  .catalogo-barra .cabecera-seccion{margin-bottom:0}
+  .buscador{display:flex;flex-direction:column;gap:6px;flex:0 1 320px}
+  .buscador label{font-size:14px;font-weight:600;color:var(--azul)}
+  .buscador input{font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid #C8CAD8;border-radius:6px;min-height:48px}
+  .productos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+  .producto{background:#fff;border:1px solid #E1E3EE;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .producto-foto{aspect-ratio:4/3;background:var(--plata);overflow:hidden}
+  .producto-foto img{display:block;width:100%;height:100%;object-fit:cover}
+  .producto-cuerpo{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .producto h3{margin:0;font-family:var(--display);font-weight:800;font-size:21px;line-height:1.15;color:var(--azul)}
+  .producto .precio{margin:0;font-weight:700;color:var(--rojo);font-size:17px}
+  .producto .desc{margin:0;color:var(--texto-suave);font-size:15px;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .producto .desc.abierta{display:block}
+  .ver-mas{align-self:flex-start;background:none;border:0;padding:4px 0;font:inherit;font-size:14px;font-weight:600;color:var(--azul);text-decoration:underline;cursor:pointer;min-height:32px}
+  .producto .btn{margin-top:auto;font-size:15px;padding:12px 18px;min-height:44px}
+  .catalogo-estado{margin:0;padding:40px 24px;text-align:center;background:var(--plata);border-radius:10px;color:var(--texto-suave)}
+
+  .ventajas{padding:72px 0;background:var(--plata)}
+  .ventajas .rejilla{gap:40px}
+  .ventaja{flex:1 1 280px;display:flex;gap:18px;align-items:flex-start}
+  .ventaja-icono{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--azul);display:flex;align-items:center;justify-content:center}
+  .ventaja h3{margin:0 0 6px;font-family:var(--display);font-weight:800;font-size:21px;color:var(--azul)}
+  .ventaja p{margin:0;color:var(--texto-suave);font-size:15px}
+
+  .opiniones{background:var(--azul-profundo);color:#fff}
+  .opinion{margin:0;flex:1 1 340px;background:var(--azul);border-radius:10px;padding:36px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;position:relative}
+  .opinion::before{content:"";position:absolute;left:36px;top:0;width:48px;height:5px;background:var(--rojo)}
+  .opinion blockquote{margin:0;font-family:var(--display);font-weight:700;font-style:italic;font-size:clamp(26px,3vw,34px);line-height:1.2}
+  .opinion figcaption{font-size:14px;color:var(--azul-suave)}
+
+  .ubicacion-grid{display:flex;flex-wrap:wrap;gap:48px;align-items:stretch}
+  .ubicacion-datos{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px}
+  .datos{display:flex;flex-direction:column;gap:20px}
+  .dato{display:flex;gap:16px;align-items:flex-start}
+  .dato svg{flex:0 0 auto;margin-top:2px}
+  .dato strong{display:block;font-size:16px;color:var(--azul)}
+  .dato span{display:block;color:var(--texto-suave);font-size:15px}
+  .dato a{color:var(--texto);word-break:break-word;font-size:15px}
+  .dato a:hover{color:var(--rojo)}
+  .dato .pequeno{font-size:13px;color:#5C5E76}
+  .mapa{flex:1 1 400px;min-width:0;min-height:400px;border-radius:10px;overflow:hidden;background:var(--plata)}
+  .mapa iframe{display:block;width:100%;height:100%;min-height:400px;border:0}
+
+  .pie{background:var(--azul-noche);color:var(--azul-suave);font-size:14px}
+  .pie .contenedor{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-top:30px;padding-bottom:30px}
+  .pie a{color:#fff}
+
+  @media (max-width:900px){
+    .portada-franja{display:none}
+    .portada-foto{position:relative;width:100%;height:300px;clip-path:none}
+    .portada-grid{min-height:0;padding-top:40px;padding-bottom:56px}
+    .portada-texto{width:100%}
+  }
+  @media (max-width:640px){
+    .portada-foto{height:240px}
+    .seccion{padding:64px 0}
+    .ventajas{padding:56px 0}
+    .menu{gap:4px 18px}
+    .menu a.enlace{display:none}
+    .marca img{height:42px}
+    .especialidades li{font-size:21px}
+  }
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true">
+  <div class="intro-logo">
+    <img class="i-m" src="img/logo-m.png" alt="">
+    <img class="i-palabra" src="img/logo-palabra.png" alt="">
+    <img class="i-lema" src="img/logo-lema.png" alt="">
+    <span class="i-linea"></span>
+  </div>
+</div>
+
+<header class="encabezado">
+  <nav class="contenedor nav" aria-label="Principal">
+    <a href="#inicio" class="marca"><img src="img/logo.png" alt="Multiautos, garantía que da confianza" width="573" height="162"></a>
+    <div class="menu">
+      <a class="enlace" href="#servicios">Servicios</a>
+      <a class="enlace" href="#catalogo">Catálogo</a>
+      <a class="enlace" href="#opiniones">Opiniones</a>
+      <a class="enlace" href="#ubicacion">Ubicación</a>
+      <a class="btn btn-rojo" href="tel:+50522702838">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        2270 2838
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="inicio" class="portada oscuro">
+    <div class="portada-franja" aria-hidden="true"></div>
+    <figure class="portada-foto">
+      <img src="img/portada.jpg" alt="Vehículos con el capó abierto en reparación en el taller Multiautos de Nicaragua" width="732" height="376">
+    </figure>
+    <div class="contenedor portada-grid">
+      <div class="portada-texto">
+        <p class="etiqueta">Garantía que da confianza</p>
+        <h1>Su vehículo en manos de expertos</h1>
+        <p class="intro">Mecánica, enderezado y pintura al horno en Managua. Estamos en Pista de la Resistencia, a 60 metros de la Rotonda Cristo Rey.</p>
+        <div class="acciones">
+          <a class="btn btn-rojo" href="tel:+50522702838">Llamar al 2270 2838</a>
+          <a class="btn btn-borde" href="https://www.google.com/maps/dir/?api=1&amp;destination=12.132237,-86.2588126" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+        <div class="resena-chip">
+          <strong>4,2</strong>
+          <span class="estrellas" role="img" aria-label="4,2 de 5 estrellas">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </span>
+          <span>139 reseñas en Google</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="banda">
+    <div class="contenedor">
+      <ul class="especialidades">
+        <li>Mecánica</li>
+        <li>Enderezado</li>
+        <li>Pintura al horno</li>
+      </ul>
+      <p class="horario"><strong>Horario:</strong> [Días y hora de apertura], cierre a las 5:30 p. m.</p>
+    </div>
+  </div>
+
+  <section id="servicios" class="seccion servicios">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">Servicios</p>
+        <h2 class="titulo">Lo que hacemos por su vehículo</h2>
+        <p class="sub">Atendemos Mercedes-Benz, BMW, Land Rover y otras marcas.</p>
+      </div>
+      <div class="rejilla">
+        <article class="servicio">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <h3>Mecánica</h3>
+          <p>Diagnóstico y reparación mecánica. Le explicamos qué necesita su vehículo antes de empezar.</p>
+        </article>
+        <article class="servicio">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14v-5l-2-5H7l-2 5v5z"/><path d="M5 12h14"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></svg>
+          <h3>Enderezado</h3>
+          <p>Reparamos golpes y daños en la carrocería para devolverle su forma original.</p>
+        </article>
+        <article class="servicio">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 11h-3V4a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H5"/><path d="M5 11h14v3a2 2 0 0 1-2 2h-3v4a2 2 0 0 1-4 0v-4H7a2 2 0 0 1-2-2v-3z"/></svg>
+          <h3>Pintura al horno</h3>
+          <p>Acabado de pintura en horno para un resultado uniforme y duradero.</p>
+        </article>
+        <article class="servicio">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>Presupuestos y seguros</h3>
+          <p>Proforma detallada antes de autorizar la reparación, y trabajos cubiertos por su aseguradora. [Confirmar aseguradoras]</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogo" class="seccion catalogo">
+    <div class="contenedor">
+      <div class="catalogo-barra">
+        <div class="cabecera-seccion">
+          <p class="etiqueta">Catálogo</p>
+          <h2 class="titulo">Nuestros productos</h2>
+          <p class="sub">Consulte disponibilidad y precio por teléfono o correo.</p>
+        </div>
+        <div class="buscador" id="buscador" hidden>
+          <label for="buscar">Buscar producto</label>
+          <input id="buscar" type="search" placeholder="Ej.: aceite, filtro, frenos" autocomplete="off">
+        </div>
+      </div>
+      <div class="productos" id="productos" aria-live="polite"></div>
+      <p class="catalogo-estado" id="catalogo-estado">Cargando productos…</p>
+    </div>
+  </section>
+
+  <section class="ventajas" aria-label="Por qué elegirnos">
+    <div class="contenedor rejilla">
+      <div class="ventaja">
+        <span class="ventaja-icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><h3>Buena atención</h3><p>Nuestros clientes destacan el trato que reciben desde que llegan al taller.</p></div>
+      </div>
+      <div class="ventaja">
+        <span class="ventaja-icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <div><h3>Entrega puntual</h3><p>Cumplimos con la fecha acordada para que recupere su vehículo a tiempo.</p></div>
+      </div>
+      <div class="ventaja">
+        <span class="ventaja-icono"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div><h3>Garantía que da confianza</h3><p>Cuidamos cada detalle de la reparación y respaldamos nuestro trabajo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="opiniones" class="seccion opiniones oscuro">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">Opiniones en Google</p>
+        <h2 class="titulo">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="rejilla">
+        <figure class="opinion">
+          <blockquote>“Muy buenos en la atención y con entrega muy puntual.”</blockquote>
+          <figcaption>Roberto Barrios</figcaption>
+        </figure>
+        <figure class="opinion">
+          <blockquote>“Muy buena atención.”</blockquote>
+          <figcaption>May L</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="ubicacion" class="seccion">
+    <div class="contenedor ubicacion-grid">
+      <div class="ubicacion-datos">
+        <div>
+          <p class="etiqueta">Ubicación y contacto</p>
+          <h2 class="titulo">Visítenos</h2>
+        </div>
+        <div class="datos">
+          <div class="dato">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <strong>Dirección</strong>
+              <span>Carril derecho, Rotonda Cristo Rey 60 metros abajo, Pista de la Resistencia, Managua</span>
+              <span class="pequeno">Plus Code: 4PJR+VF Managua</span>
+            </div>
+          </div>
+          <div class="dato">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <strong>Teléfono</strong>
+              <a href="tel:+50522702838">2270 2838</a>
+            </div>
+          </div>
+          <div class="dato">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+            <div>
+              <strong>Correo</strong>
+              <a href="mailto:amorales@multiautos.com.ni">amorales@multiautos.com.ni</a>
+            </div>
+          </div>
+          <div class="dato">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/><path d="M7 14l3.5-3.5 3 2.5L17 9.5"/></svg>
+            <div>
+              <strong>Messenger</strong>
+              <!-- Cambie este enlace por el de su página: https://m.me/NOMBRE-DE-USUARIO-DE-LA-PAGINA -->
+              <a href="https://www.facebook.com/search/top?q=Multiautos%20de%20Nicaragua" target="_blank" rel="noopener">Multiautos de Nicaragua</a>
+            </div>
+          </div>
+          <div class="dato">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CB0016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div>
+              <strong>Horario</strong>
+              <span>[Días y hora de apertura], cierre a las 5:30 p. m.</span>
+            </div>
+          </div>
+        </div>
+        <div class="acciones">
+          <a class="btn btn-rojo" href="https://maps.app.goo.gl/18AhLNRZ5GjKM3uL7" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn btn-claro" href="tel:+50522702838">Llamar al taller</a>
+        </div>
+      </div>
+      <div class="mapa">
+        <iframe title="Mapa de ubicación de Multiautos de Nicaragua" src="https://maps.google.com/maps?q=12.132237,-86.2588126&amp;z=17&amp;hl=es&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <span>© 2026 Multiautos de Nicaragua. Garantía que da confianza.</span>
+    <span>Tel. <a href="tel:+50522702838">2270 2838</a> · <a href="mailto:amorales@multiautos.com.ni">amorales@multiautos.com.ni</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Quita la capa de la animación al terminar (1,5 s)
+  var intro = document.getElementById('intro');
+  if (intro) setTimeout(function () { intro.remove(); }, 1550);
+
+  // ===== Catálogo público =====
+  var lista = document.getElementById('productos');
+  var estado = document.getElementById('catalogo-estado');
+  var buscador = document.getElementById('buscador');
+  var campoBuscar = document.getElementById('buscar');
+  var productos = [];
+  var CORREO = 'amorales@multiautos.com.ni';
+
+  function tarjeta(p) {
+    var art = document.createElement('article');
+    art.className = 'producto';
+
+    var foto = document.createElement('div');
+    foto.className = 'producto-foto';
+    if (p.foto) {
+      var img = document.createElement('img');
+      img.src = p.foto;
+      img.alt = p.nombre;
+      img.loading = 'lazy';
+      foto.appendChild(img);
+    }
+    art.appendChild(foto);
+
+    var cuerpo = document.createElement('div');
+    cuerpo.className = 'producto-cuerpo';
+
+    var h3 = document.createElement('h3');
+    h3.textContent = p.nombre;
+    cuerpo.appendChild(h3);
+
+    if (p.precio) {
+      var precio = document.createElement('p');
+      precio.className = 'precio';
+      precio.textContent = p.precio;
+      cuerpo.appendChild(precio);
+    }
+
+    if (p.descripcion) {
+      var desc = document.createElement('p');
+      desc.className = 'desc';
+      desc.textContent = p.descripcion;
+      cuerpo.appendChild(desc);
+      if (p.descripcion.length > 160) {
+        var mas = document.createElement('button');
+        mas.type = 'button';
+        mas.className = 'ver-mas';
+        mas.textContent = 'Ver más';
+        mas.setAttribute('aria-expanded', 'false');
+        mas.addEventListener('click', function () {
+          var abierta = desc.classList.toggle('abierta');
+          mas.textContent = abierta ? 'Ver menos' : 'Ver más';
+          mas.setAttribute('aria-expanded', abierta ? 'true' : 'false');
+        });
+        cuerpo.appendChild(mas);
+      }
+    }
+
+    var consultar = document.createElement('a');
+    consultar.className = 'btn btn-azul';
+    consultar.href = 'mailto:' + CORREO + '?subject=' + encodeURIComponent('Consulta: ' + p.nombre);
+    consultar.textContent = 'Consultar';
+    cuerpo.appendChild(consultar);
+
+    art.appendChild(cuerpo);
+    return art;
+  }
+
+  function quitarAcentos(t) {
+    return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function mostrar() {
+    var q = quitarAcentos(campoBuscar.value.trim());
+    var visibles = productos.filter(function (p) {
+      return !q || quitarAcentos(p.nombre + ' ' + (p.descripcion || '')).indexOf(q) !== -1;
+    });
+    lista.replaceChildren.apply(lista, visibles.map(tarjeta));
+    if (!productos.length) {
+      estado.textContent = 'Pronto publicaremos nuestros productos. Mientras tanto, llámenos al 2270 2838.';
+      estado.hidden = false;
+    } else if (!visibles.length) {
+      estado.textContent = 'No encontramos productos con esa búsqueda.';
+      estado.hidden = false;
+    } else {
+      estado.hidden = true;
+    }
+  }
+
+  campoBuscar.addEventListener('input', mostrar);
+
+  fetch('api.php?accion=listar', { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) {
+      productos = Array.isArray(d.productos) ? d.productos : [];
+      buscador.hidden = productos.length < 6;
+      mostrar();
+    })
+    .catch(function () {
+      estado.textContent = 'El catálogo se mostrará cuando el sitio esté publicado en el hosting.';
+    });
+})();
+</script>
+</body>
+</html>
